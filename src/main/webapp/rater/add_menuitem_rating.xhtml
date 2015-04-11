@@ -31,9 +31,6 @@
                         <f:selectItems value="#{viewMenuItemBean.itemNames}"/>
                     </b:selectOneMenu>
                     <h:message id="itemsMsg" style="color: red" for="items" />
-                    <h:outputText id="output1" value="Set Item Rating to #{addRatingItemBean.rating}" />
-                    <h:inputHidden id="itemrating" value="#{addRatingItemBean.rating}" />
-                    <p:slider id="fr" minValue="1" maxValue="10" for="itemrating" display="output1" displayTemplate="Set Item Rating to {value}"/>
                     <b:inputText id="comments" placeholder="Comments" required="true" requiredMessage="Value is required" value="#{addRatingItemBean.comments}"/>
                     <h:message id="commentsMsg" style="color: red" for="comments" />
                     <b:datepicker id="visitDate" mode="popup" placeholder="Visit Date" changeYear="true" changeMonth="true" value="#{addRatingItemBean.visitDate}">
