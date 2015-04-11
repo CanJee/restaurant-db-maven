@@ -30,13 +30,13 @@
                         <f:selectItem itemValue="ratingdate" itemLabel="Rating Date" />
                         <f:selectItem itemValue="rating" itemLabel="Rating" />
                         <f:selectItem itemValue="visitdate" itemLabel="Visit Date" />
-                        <f:ajax event="change" execute="@form" render="menuRating_table"/>
+                        <f:ajax event="change" execute="@form" render="menuRatings_table"/>
                     </h:selectOneMenu>
                     
                     <h:selectOneMenu id="ascending" class="form-control selectMenu" value="#{viewItemRatingsBean.ascending}" valueChangeListener="#{viewItemRatingsBean.ascendingChanged}">
                         <f:selectItem itemValue="true" itemLabel="Ascending" />
                         <f:selectItem itemValue="false" itemLabel="Descending" />
-                        <f:ajax event="change" execute="@form" render="menuRating_table"/>
+                        <f:ajax event="change" execute="@form" render="menuRatings_table"/>
                     </h:selectOneMenu>
                     
                     <h:dataTable id="menuRatings_table" cellpadding="10" value="#{viewItemRatingsBean.menuItemRatings}"
