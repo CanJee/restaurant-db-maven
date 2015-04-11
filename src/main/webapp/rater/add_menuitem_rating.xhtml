@@ -4,7 +4,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <title>Restaurant DB Add Menu Item Rating</title>
@@ -30,14 +31,16 @@
                         <f:selectItems value="#{viewMenuItemBean.itemNames}"/>
                     </b:selectOneMenu>
                     <h:message id="itemsMsg" style="color: red" for="items" />
-                    <b:slider id="rating" min="1" max="10" label="Item Rating" mode="badge" value="#{addRatingItemBean.rating}"/>
+                    <h:outputText id="output1" value="Set Item Rating to #{addRatingItemBean.rating}" />
+                    <h:inputHidden id="itemrating" value="#{addRatingItemBean.rating}" />
+                    <p:slider id="fr" minValue="1" maxValue="10" for="itemrating" display="output1" displayTemplate="Set Item Rating to {value}"/>
                     <b:inputText id="comments" placeholder="Comments" required="true" requiredMessage="Value is required" value="#{addRatingItemBean.comments}"/>
                     <h:message id="commentsMsg" style="color: red" for="comments" />
                     <b:datepicker id="visitDate" mode="popup" placeholder="Visit Date" changeYear="true" changeMonth="true" value="#{addRatingItemBean.visitDate}">
                         <f:convertDateTime pattern="MM/dd/yyyy" timeZone="EST"/>
                     </b:datepicker>
                     <b:commandButton look="primary btn-block" value="Add Menu Item Rating" iconAwesome="sign-in" size="lg" actionListener="#{addRatingItemBean.addMenuItemRating}">
-                        <f:ajax execute="restaurants items rating visitDate" 
+                        <f:ajax execute="restaurants items itemrating visitDate" 
                                 render="status restaurantsMsg itemsMsg commentsMsg" />
                     </b:commandButton>
                 </h:form>
