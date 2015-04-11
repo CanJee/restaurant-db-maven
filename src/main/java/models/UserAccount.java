@@ -3,6 +3,7 @@ package models;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,10 +20,10 @@ import javax.persistence.Table;
 public class UserAccount implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(nullable = false)
+    @Id
     private String username;
     @Column(nullable = false)
     private String firstname;
@@ -124,19 +125,21 @@ public class UserAccount implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 3;
+        hash = 59 * hash + Objects.hashCode(this.username);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UserAccount)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        UserAccount other = (UserAccount) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final UserAccount other = (UserAccount) obj;
+        if (!Objects.equals(this.username, other.username)) {
             return false;
         }
         return true;

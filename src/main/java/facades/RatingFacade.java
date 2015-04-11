@@ -164,10 +164,15 @@ public class RatingFacade extends BaseFacade{
     
     public boolean alreadyLikedRating (Rater rater, Rating rating) {
         List<Rating> raterLikedRatings = rater.getLikedRatings();
+        System.out.println(raterLikedRatings);
         if (raterLikedRatings != null && raterLikedRatings.contains(rating))
             return true;
         else
             return false;
+    }
+    
+    public boolean isRaterRating (Rater rater, Rating rating) {
+        return (rater.equals(rating.getRater()));
     }
     
     public void addLikeForRating (Rater rater, Rating rating) {
@@ -176,9 +181,6 @@ public class RatingFacade extends BaseFacade{
             Rater ratingRater = rating.getRater();
             rating.setLikes(rating.getLikes()+1);
             List<Rating> raterLikedRatings = rater.getLikedRatings();
-            if (raterLikedRatings == null) {
-                raterLikedRatings = new ArrayList<Rating>();
-            }
             raterLikedRatings.add(rating);
             rater.setLikedRatings(raterLikedRatings);
             ratingRater.setReputation(ratingRater.getReputation()+1);

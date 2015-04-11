@@ -123,6 +123,10 @@ public class ViewRaterRatingBean extends BaseBean{
             isError = true;
             status = "You have already liked this rating";
         }
+        else if (ratingFacade.isRaterRating(rater, rating)) {
+            isError = true;
+            status = "You cannot like your own rating";
+        }
         else {
             isError = false;
             ratingFacade.addLikeForRating(rater, rating);
