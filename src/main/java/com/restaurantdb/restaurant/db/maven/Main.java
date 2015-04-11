@@ -6,6 +6,7 @@
 package com.restaurantdb.restaurant.db.maven;
 
 import java.io.File;
+import javax.persistence.Persistence;
 import org.glassfish.embeddable.Deployer;
 import org.glassfish.embeddable.GlassFish;
 import org.glassfish.embeddable.GlassFishProperties;
@@ -32,6 +33,7 @@ public class Main {
             Deployer deployer = glassfish.getDeployer();            
             File file = new File("target/restaurant-db-maven-1.0.war");      
             deployer.deploy(file);
+            Persistence.createEntityManagerFactory("MyPersistenceUnit");
         } catch (Exception e) {}
     }
     
