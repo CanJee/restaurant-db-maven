@@ -4,7 +4,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <title>Restaurant DB Add Rating</title>
@@ -30,17 +31,25 @@
                         <f:selectItems value="#{viewLocationBean.restaurantStreetAddresses}"/>
                     </b:selectOneMenu>
                     <h:message id="locationsMsg" style="color: red" for="locations" />
-                    <b:slider id="fr" min="1" max="10" label="Food Rating" mode="badge" value="#{addRatingBean.foodrating}"/>
-                    <b:slider id="mr" min="1" max="10" label="Mood Rating" mode="badge" value="#{addRatingBean.moodrating}"/>
-                    <b:slider id="pr" min="1" max="10" label="Price Rating" mode="badge" value="#{addRatingBean.pricerating}"/>
-                    <b:slider id="sr" min="1" max="10" label="Staff Rating" mode="badge" value="#{addRatingBean.staffrating}"/>
+                    <h:outputText id="output1" value="Set Food Rating to #{addRatingBean.foodrating}" />
+                    <h:inputHidden id="foodrating" value="#{addRatingBean.foodrating}" />
+                    <p:slider id="fr" minValue="1" maxValue="10" for="foodrating" display="output1" displayTemplate="Set Food Rating to {value}"/>
+                    <h:outputText id="output2" value="Set Mood Rating to #{addRatingBean.moodrating}" />
+                    <h:inputHidden id="moodrating" value="#{addRatingBean.moodrating}" />
+                    <p:slider id="mr" minValue="1" maxValue="10" for="moodrating" display="output2" displayTemplate="Set Mood Rating to {value}"/>
+                    <h:outputText id="output3" value="Set Price Rating to #{addRatingBean.pricerating}" />
+                    <h:inputHidden id="pricerating" value="#{addRatingBean.pricerating}" />
+                    <p:slider id="pr" minValue="1" maxValue="10" for="pricerating" display="output3" displayTemplate="Set Price Rating to {value}"/>
+                    <h:outputText id="output4" value="Set Staff Rating to #{addRatingBean.staffrating}" />
+                    <h:inputHidden id="staffrating" value="#{addRatingBean.staffrating}" />
+                    <p:slider id="sr" minValue="1" maxValue="10" for="staffrating" display="output4" displayTemplate="Set Staff Rating to {value}"/>
                     <b:inputText id="comments" placeholder="Comments" required="true" requiredMessage="Value is required" value="#{addRatingBean.comments}"/>
                     <h:message id="commentsMsg" style="color: red" for="comments" />
                     <b:datepicker id="visitDate" mode="popup" placeholder="Visit Date" changeYear="true" changeMonth="true" value="#{addRatingBean.visitDate}">
                         <f:convertDateTime pattern="MM/dd/yyyy" timeZone="EST"/>
                     </b:datepicker>
                     <b:commandButton look="primary btn-block" value="Add Rating" iconAwesome="sign-in" size="lg" actionListener="#{addRatingBean.addRating}">
-                        <f:ajax execute="restaurants locations fr mr pr sr visitDate" 
+                        <f:ajax execute="restaurants locations fr mr pr sr visitDate foodrating moodrating pricerating staffrating" 
                                 render="status restaurantsMsg locationsMsg commentsMsg" />
                     </b:commandButton>
                 </h:form>

@@ -65,3 +65,8 @@ table thead tr th{
 .capitalize {
     text-transform: capitalize;
 }
+
+#fr, #mr, #pr, #sr {
+    margin-bottom: 20px;
+    margin-top: 2px;
+}
