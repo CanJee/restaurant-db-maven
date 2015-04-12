@@ -39,6 +39,7 @@ public class Rater extends User {
     @JoinColumn(nullable = true)
     private List<Rating> likedRatings;
     @OneToMany(fetch=FetchType.EAGER)
+    @JoinColumn(nullable = true)
     private List<RatingItem> likedRatingItems;
 
     public int getReputation() {

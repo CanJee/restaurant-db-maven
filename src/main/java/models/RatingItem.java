@@ -11,6 +11,8 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,10 +27,12 @@ import javax.persistence.Table;
 @Table(name="ratingitem_6795550")
 public class RatingItem implements Serializable {
     private static final long serialVersionUID = 1L;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     @Column(nullable = false, columnDefinition = "DATE DEFAULT CURRENT_DATE")
     private Date ratingdate;
-    @Id
     @Column(nullable = false)
+    @Id
     private Date visitdate;
     @Column(nullable = false)
     private int rating;
@@ -36,10 +40,19 @@ public class RatingItem implements Serializable {
     private String comments;
     @ManyToOne(fetch = FetchType.EAGER)
     private MenuItem menuitem;
-    @Id
     @ManyToOne(fetch = FetchType.EAGER)
+    @Id
     private Rater rater;
+    @Column(nullable = false)
     private int likes;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public int getLikes() {
         return likes;
@@ -99,10 +112,9 @@ public class RatingItem implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.visitdate);
-        hash = 29 * hash + Objects.hashCode(this.menuitem);
-        hash = 29 * hash + Objects.hashCode(this.rater);
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.visitdate);
+        hash = 89 * hash + Objects.hashCode(this.rater);
         return hash;
     }
 
@@ -116,9 +128,6 @@ public class RatingItem implements Serializable {
         }
         final RatingItem other = (RatingItem) obj;
         if (!Objects.equals(this.visitdate, other.visitdate)) {
-            return false;
-        }
-        if (!Objects.equals(this.menuitem, other.menuitem)) {
             return false;
         }
         if (!Objects.equals(this.rater, other.rater)) {
