@@ -16,6 +16,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import models.Location;
 import models.MenuItem;
+import models.Rater;
 import models.Rating;
 import models.RatingItem;
 
@@ -36,6 +37,40 @@ public class ViewItemRatingsBean extends BaseBean{
     private MenuItem menuItem;
     private List<RatingItem> menuItemRatings;
     private int ratingsCount;
+    private boolean isError;
+    private String status;
+
+    public boolean isIsError() {
+        return isError;
+    }
+
+    public void setIsError(boolean isError) {
+        this.isError = isError;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    public void addLike (RatingItem rating) {
+        Rater rater = sessionBean.getRater();
+        if (menuItemRatingFacade.alreadyLikedRating(rater, rating)) {
+            isError = true;
+            status = "You have already liked this rating";
+        }
+        else if (menuItemRatingFacade.isRaterRating(rater, rating)) {
+            isError = true;
+            status = "You cannot like your own rating";
+        }
+        else {
+            isError = false;
+            menuItemRatingFacade.addLikeForRating(rater, rating);
+        }
+    }
 
     public MenuItemRatingFacade getMenuItemRatingFacade() {
         return menuItemRatingFacade;

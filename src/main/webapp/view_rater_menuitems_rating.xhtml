@@ -37,6 +37,9 @@
                         <f:selectItem itemValue="false" itemLabel="Descending" />
                         <f:ajax event="change" execute="@form" render="menuitemrating_table"/>
                     </h:selectOneMenu>
+                    <b:alert id="status1" severity="danger" rendered="#{viewRaterMenuItemRatingBean.isError}"><b:iconAwesome name="warning" />
+                        #{viewRaterMenuItemRatingBean.status}
+                    </b:alert>
                     
                     <h:dataTable id="menuitemrating_table" cellpadding="10" value="#{viewRaterMenuItemRatingBean.itemRatings}"
                                   var="itemRatings" border="1">
@@ -60,6 +63,17 @@
                             <f:facet name="header">Comments</f:facet>
                             <h:outputText value="#{itemRatings.comments}"/>
                         </h:column>
+                        <h:column>
+                            <f:facet name="header">Rating Likes</f:facet>
+                            <h:outputText id="likes" value="#{itemRatings.likes}"/>
+                        </h:column>
+                        <c:if test="#{sessionBean.rater}" >
+                            <h:column>
+                                <b:commandButton value="Like Rating" look="primary" type="command" actionListener="#{viewRaterMenuItemRatingBean.addLike(itemRatings)}">
+                                    <f:ajax render="likes status1"/>
+                                </b:commandButton>
+                            </h:column>
+                        </c:if>
                      </h:dataTable>
                     </c:if>
                 </h:form>

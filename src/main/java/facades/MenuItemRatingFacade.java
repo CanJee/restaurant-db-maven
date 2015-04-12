@@ -125,4 +125,34 @@ public class MenuItemRatingFacade extends BaseFacade{
         return items;
     }
     
+    public boolean alreadyLikedRating (Rater rater, RatingItem rating) {
+        List<RatingItem> raterLikedRatings = rater.getLikedRatingItems();
+        if (raterLikedRatings != null && raterLikedRatings.contains(rating))
+            return true;
+        else
+            return false;
+    }
+    
+    public boolean isRaterRating (Rater rater, RatingItem rating) {
+        return (rater.equals(rating.getRater()));
+    }
+    
+    public void addLikeForRating (Rater rater, RatingItem rating) {
+        try {
+            utx.begin();
+            Rater ratingRater = rating.getRater();
+            rating.setLikes(rating.getLikes()+1);
+            List<RatingItem> raterLikedRatings = rater.getLikedRatingItems();
+            raterLikedRatings.add(rating);
+            rater.setLikedRatingItems(raterLikedRatings);
+            ratingRater.setReputation(ratingRater.getReputation()+1);
+            em.merge(rater);
+            em.merge(rating);
+            em.merge(ratingRater);
+            utx.commit();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
 }

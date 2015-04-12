@@ -164,7 +164,6 @@ public class RatingFacade extends BaseFacade{
     
     public boolean alreadyLikedRating (Rater rater, Rating rating) {
         List<Rating> raterLikedRatings = rater.getLikedRatings();
-        System.out.println(raterLikedRatings);
         if (raterLikedRatings != null && raterLikedRatings.contains(rating))
             return true;
         else
