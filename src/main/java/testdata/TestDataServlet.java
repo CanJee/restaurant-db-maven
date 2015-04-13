@@ -56,7 +56,12 @@ public class TestDataServlet extends HttpServlet {
         try {
             utx.begin();
             
-            Owner owner = createOwner();
+            Owner owner = createOwner("owner@example.com", "owner", "Robert", "Paul", "test");
+            Owner owner2 = createOwner("owner2@example.com", "owner2", "Mangus", "Willith", "test");
+            Owner owner3 = createOwner("owner3@example.com", "owner3", "Marty", "Base", "test");
+            Owner owner4 = createOwner("owner4@example.com", "owner4", "Melissa", "Lambert", "test");
+            Owner owner5 = createOwner("owner5@example.com", "owner5", "Paul", "Johnson", "test");
+            
             Rater rater = createRater("rater@example.com", "rater", "John", "Doe", "test",4);
             Rater rater2 = createRater("rater2@example.com", "rater2", "Bob", "Doe", "test",13);
             Rater rater3 = createRater("rater3@example.com", "rater3", "Maria", "Charles", "test",500);
@@ -72,8 +77,6 @@ public class TestDataServlet extends HttpServlet {
             Rater rater13 = createRater("rater13@example.com", "rater13", "Robert", "Samuel", "test",5);
             Rater rater14 = createRater("rater14@example.com", "rater14", "Emma", "Vank", "test",11);
             Rater rater15 = createRater("rater15@example.com", "rater15", "Moore", "Jingson", "test",33);
-            
-            
             
             createRestaurants(owner);
             Location loc = addLocation(owner, restaurant1, "25 test drive", "Ottawa", "A0A 0A0", "ON" );
@@ -117,53 +120,53 @@ public class TestDataServlet extends HttpServlet {
             
             MenuItem item2 = addMenuItem(restaurant1,"main", "Chicken Burger", "food", 
                     "Chicken burger with lettuce and tomatoes", 6.75);
-        //    addMenuItemRating(item2, 3, "Just alright", rater2,2);
+            addMenuItemRating(item2, 3, "Just alright", rater2,2);
             
             MenuItem item3 = addMenuItem(restaurant1,"main", "Burger Combo", "food", 
                     "Cheese Burger and fries", 8.75);
-         //   addMenuItemRating(item3, 5, "Was alright.", rater3,0);
+            addMenuItemRating(item3, 5, "Was alright.", rater3,0);
             
             MenuItem item4 = addMenuItem(restaurant1,"main", "Coke", "drink", 
                     "Coke", 1.75);
-        //    addMenuItemRating(item4, 4, "Typical drink", rater,2);
-        //    addMenuItemRating(item4, 1, "Was served water instead", rater4,0);
+            addMenuItemRating(item4, 4, "Typical drink", rater,2);
+            addMenuItemRating(item4, 1, "Was served water instead", rater4,0);
             
             MenuItem item5 = addMenuItem(restaurant1,"desert", "Ice Cream", "food", 
                     "Strawberry Ice Cream. Yummy", 3.75);
-        //    addMenuItemRating(item5, 1, "Ew", rater5,0);
-        //    addMenuItemRating(item5, 5, "loved it", rater8,10);
+            addMenuItemRating(item5, 1, "Ew", rater5,0);
+            addMenuItemRating(item5, 5, "loved it", rater8,10);
             
             MenuItem item6 = addMenuItem(restaurant2,"main", "Chicken", "food", "Hot Grilled Chicken"
             , 8.75);
             MenuItem item7 = addMenuItem(restaurant2,"main", "Beef Burger", "food", 
                     "Hot grilled burger", 11.75);
-        //    addMenuItemRating(item7, 4, "Decent", rater14,10);
+            addMenuItemRating(item7, 4, "Decent", rater14,10);
             
             MenuItem item8 = addMenuItem(restaurant2,"side", "Fries", "food", 
                     "baked fries", 3.75);
-        //    addMenuItemRating(item, 1, "Came for fries, got a baked potato...", rater15,4);
+            addMenuItemRating(item, 1, "Came for fries, got a baked potato...", rater15,4);
             
             MenuItem item9 = addMenuItem(restaurant2,"main", "Orange juice", "drink", 
                     "Orange juice", 1.65);
             
             MenuItem item10 = addMenuItem(restaurant4,"main", "Grilled halloumi", "food", "Cheese made from goat and sheep milk"
             , 6.75);
-        //    addMenuItemRating(item10, 5, "Excellent", rater13,4);
+            addMenuItemRating(item10, 5, "Excellent", rater13,4);
             
             MenuItem item11 = addMenuItem(restaurant4,"main", "Falafel", "food", 
                     "fried chickpeas with herbs", 5.75);
-        //    addMenuItemRating(item11, 5, "No idea what I ate but it was great", rater7,1);
+            addMenuItemRating(item11, 5, "No idea what I ate but it was great", rater7,1);
             
             MenuItem item12 = addMenuItem(restaurant4,"side", "Fattoush", "food", 
                     "Salad with crispy lettus and crunchy squares of pita", 4.75);
             
             MenuItem item13 = addMenuItem(restaurant4,"main", "milk", "drink", 
                     "Milk", 1.85);
-        //    addMenuItemRating(item13, 1, "Was expired.", rater4,29);
+            addMenuItemRating(item13, 1, "Was expired.", rater4,29);
 
             MenuItem item14 = addMenuItem(restaurant5,"main", "Gobhi Aloo", "food", "Cauliflower with potatoes"
             , 4.75);
-        //    addMenuItemRating(item14, 4, "Was interesting", rater2,5);
+            addMenuItemRating(item14, 4, "Was interesting", rater2,5);
             
             MenuItem item15 = addMenuItem(restaurant5,"main", "Baati", "food", 
                     "Wheat flour", 5.25);
@@ -174,93 +177,93 @@ public class TestDataServlet extends HttpServlet {
             
             MenuItem item18 = addMenuItem(restaurant3,"main", "Noodle Soup", "food", "Soup"
             , 4.75);
-         //   addMenuItemRating(item18, 2, "Wasn't satisfied.", rater8,3);
+            addMenuItemRating(item18, 2, "Wasn't satisfied.", rater8,3);
             
             MenuItem item19 = addMenuItem(restaurant3,"main", "Chow mein", "food", 
                     "Chow mein mix", 6.75);
-         //   addMenuItemRating(item19, 5, "Wasn't cooked properly", rater11,4);
+            addMenuItemRating(item19, 5, "Wasn't cooked properly", rater11,4);
             
             MenuItem item20 = addMenuItem(restaurant3,"main", "Fried Rice", "food", 
                     "Rice mix", 3.75);
             MenuItem item21 = addMenuItem(restaurant3,"main", "Water", "drink", 
                     "Water", 1.25);
-          //  addMenuItemRating(item21, 5, "Best water I've ever had.", rater,7);
+            addMenuItemRating(item21, 5, "Best water I've ever had.", rater,7);
             
             MenuItem item22 = addMenuItem(restaurant6,"main", "Sandwich", "drink", 
                     "12 inch Sandwich", 7.25);
-          //  addMenuItemRating(item22, 1, "I've ate bigger.", rater9,7);
+            addMenuItemRating(item22, 1, "I've ate bigger.", rater9,7);
             
             MenuItem item23 = addMenuItem(restaurant6,"side", "Cookie", "food", 
                     "Gingerbread Cookie", 1.25);
-          //  addMenuItemRating(item23, 5, "Loving it", rater13,3);
+            addMenuItemRating(item23, 5, "Loving it", rater13,3);
             
             MenuItem item24 = addMenuItem(restaurant7,"side", "Coffee", "drink", 
                     "Refreshing coffee", 1.24);
-          //  addMenuItemRating(item24, 5, "Amazing coffee", rater11,2);
+            addMenuItemRating(item24, 5, "Amazing coffee", rater11,2);
             
             MenuItem item25 = addMenuItem(restaurant7,"side", "Cookie", "food", 
                     "Chocolat Cookie", 1.25);
-          //  addMenuItemRating(item25, 1, "Worst cookie I've ever had", rater15,23);
+            addMenuItemRating(item25, 1, "Worst cookie I've ever had", rater15,23);
             
             MenuItem item26 = addMenuItem(restaurant8,"main", "Pepperoni Pizza", "food", 
                     "Pizza with pepperoni and cheese", 6.24);
-          //  addMenuItemRating(item26, 3, "Tasted fake", rater11,7);
+            addMenuItemRating(item26, 3, "Tasted fake", rater11,7);
             
             MenuItem item27 = addMenuItem(restaurant8,"main", "Cheese Pizza", "food", 
                     "Pizza with only cheese and tomato sauce", 6.24);
             
             MenuItem item28 = addMenuItem(restaurant9,"main", "Fried Chicken", "food", 
                     "24 fried chicken", 10.24);
-          //  addMenuItemRating(item28, 5, "Awesome!", rater3,7);
+            addMenuItemRating(item28, 5, "Awesome!", rater3,7);
             
             MenuItem item29 = addMenuItem(restaurant9,"side", "fries", "food", 
                     "30 fries filled in a box", 4.24);
-          //  addMenuItemRating(item29, 3, "Didn't taste like what I thought it would", rater5,2);
+            addMenuItemRating(item29, 3, "Didn't taste like what I thought it would", rater5,2);
             
             MenuItem item30 = addMenuItem(restaurant10,"main", "Hawaii Pizza", "food", 
                     "Pizza with cheese pepperoni and pineapple", 6.24);
-          //  addMenuItemRating(item30, 5, "Cool pizza", rater11,1);
+            addMenuItemRating(item30, 5, "Cool pizza", rater11,1);
             
             MenuItem item31 = addMenuItem(restaurant10,"main", "Pepperoni Pizza", "food", 
                     "Pizza with cheese and pepperoni", 6.24);
-          //  addMenuItemRating(item21, 5, "Similar to Pizza hut", rater6,14);
+            addMenuItemRating(item21, 5, "Similar to Pizza hut", rater6,14);
             
             MenuItem item32 = addMenuItem(restaurant10,"main", "Cheese Pizza", "food", 
                     "Pizza with cheese", 6.24);
-          //  addMenuItemRating(item32, 1, "Pretty sure what I had technically wasn't a pizza", rater4,0);
+            addMenuItemRating(item32, 1, "Pretty sure what I had technically wasn't a pizza", rater4,0);
             
             MenuItem item33 = addMenuItem(restaurant11,"main", "Regular Burger", "food", 
                     "A burger with lettuce and tomatoes", 7.24);
-          //  addMenuItemRating(item33, 5, "Acceptable.", rater3,7);
+            addMenuItemRating(item33, 5, "Acceptable.", rater3,7);
             
             MenuItem item34 = addMenuItem(restaurant11,"side", "fries", "food", 
                     "Fries to serve with a burger", 2.24);
-           // addMenuItemRating(item34, 1, "Eh didn't like them", rater,7);
+            addMenuItemRating(item34, 1, "Eh didn't like them", rater,7);
             
             MenuItem item35 = addMenuItem(restaurant11,"main", "Cream Soda", "drink", 
                     "Soda drink", 1.84);
-           // addMenuItemRating(item35, 3, "Amazing<3.", rater7,3);
+            addMenuItemRating(item35, 3, "Amazing<3.", rater7,3);
             
             MenuItem item36 = addMenuItem(restaurant12,"main", "Coffee", "drink", 
                     "Warm Coffee", 1.44);
-           // addMenuItemRating(item36, 5, "Better than I thought.", rater14,12);
+            addMenuItemRating(item36, 5, "Better than I thought.", rater14,12);
             
             MenuItem item37 = addMenuItem(restaurant12,"main", "Chocolat Donut Ring", "food", 
                     "Chocolat glazed donut", 1.48);
-           // addMenuItemRating(item37, 3, "Not the best, not the worst", rater15,2);
+            addMenuItemRating(item37, 3, "Not the best, not the worst", rater15,2);
             
             MenuItem item38 = addMenuItem(restaurant12,"main", "Cruller", "food", 
                     "glazed donut", 1.48);
-           // addMenuItemRating(item38, 5, "Didn't realize it was donut. What a surprise!", rater12,6);
+            addMenuItemRating(item38, 5, "Didn't realize it was donut. What a surprise!", rater12,6);
             
             MenuItem item39 = addMenuItem(restaurant12,"main", "Plain bagel", "food", 
                     "Bagel with butter served on the side", 1.20);
-           // addMenuItemRating(item39, 5, "I love plain bagels.", rater,7);
+            addMenuItemRating(item39, 5, "I love plain bagels.", rater,7);
             
             MenuItem item40 = addMenuItem(restaurant12,"main", "Smile", "N/A", 
                     "A free smile!", 0);
-           // addMenuItemRating(item40, 1, "How is this a menu item?", rater9,0);
-          //  addMenuItemRating(item40, 1, "All lies. There was no smile.", rater10,11);
+            addMenuItemRating(item40, 1, "How is this a menu item?", rater9,0);
+            addMenuItemRating(item40, 1, "All lies. There was no smile.", rater10,11);
             
             
             
@@ -271,15 +274,15 @@ public class TestDataServlet extends HttpServlet {
         }
     }
     
-    private Owner createOwner() {
+    private Owner createOwner(String email, String userName, String firstName, String lastName, String password) {
         java.util.Calendar cal = Calendar.getInstance();
         java.sql.Date sqlDate = new java.sql.Date(cal.getTime().getTime());
         UserAccount account = new UserAccount();
-        account.setEmail("owner@example.com");
-        account.setUsername("owner");
-        account.setFirstname("Owner1");
-        account.setLastname("Owner1");
-        setPassword(account, "test");
+        account.setEmail(email);
+        account.setUsername(userName);
+        account.setFirstname(firstName);
+        account.setLastname(lastName);
+        setPassword(account, password);
         account.setType("online");
         account.setJoindate(sqlDate);
 
@@ -408,19 +411,15 @@ public class TestDataServlet extends HttpServlet {
         return item;
     }
     
-    private void addMenuItemRating(MenuItem menuItem, int rate1, String comment, Rater rate, int likes){  
+    private void addMenuItemRating(MenuItem menuItem, int rate1, String comment, Rater rate, int likes){ 
         java.util.Calendar cal = Calendar.getInstance();
         java.sql.Date sqlDate = new java.sql.Date(cal.getTime().getTime());
-        List<RatingItem> menuItemRatings;
-        if (menuItem.getRatings() == null)
+        List<RatingItem> menuItemRatings = menuItem.getRatings();
+        List<RatingItem> raterMenuItemRatings = rate.getItemratings();
+        if (menuItemRatings == null)
             menuItemRatings = new ArrayList<RatingItem>();
-        else
-            menuItemRatings = menuItem.getRatings();
-        List<RatingItem> raterItemRatings;
-        if (rate.getItemratings() == null)
-            raterItemRatings = new ArrayList<RatingItem>();
-        else
-            raterItemRatings = rate.getItemratings();
+        if (raterMenuItemRatings == null)
+            raterMenuItemRatings = new ArrayList<RatingItem>();
         RatingItem rating = new RatingItem();
         rating.setRating(rate1);
         rating.setComments(comment);
@@ -430,15 +429,15 @@ public class TestDataServlet extends HttpServlet {
         rating.setRatingdate(sqlDate);
         rating.setLikes(likes);
         menuItemRatings.add(rating);
-        raterItemRatings.add(rating);
+        raterMenuItemRatings.add(rating);
         menuItem.setRatings(menuItemRatings);
-        rate.setItemratings(raterItemRatings);
-        em.persist(menuItem);
-        em.persist(rate);
-        em.persist(rating);
+        rate.setItemratings(raterMenuItemRatings);
+        em.merge(menuItem);
+        em.merge(rate);
+        em.merge(rating);
     }
     
-    private void addLocationRating (Location location, Rater rate) {
+    private void addLocationRating (Location location, Rater rate) {        
         java.util.Calendar cal = Calendar.getInstance();
         java.sql.Date sqlDate = new java.sql.Date(cal.getTime().getTime());
         List<Rating> locationRatings = new ArrayList<Rating>();

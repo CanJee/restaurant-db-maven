@@ -98,6 +98,7 @@ public class ViewItemRatingsBean extends BaseBean{
     public void viewMenuItemRatings (MenuItem menuItem) {
         this.menuItem = menuItem;
         menuItemRatings = menuItem.getRatings();
+        isError = false;
         
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         try {

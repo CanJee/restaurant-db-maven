@@ -28,11 +28,11 @@ import javax.persistence.Table;
 public class RatingItem implements Serializable {
     private static final long serialVersionUID = 1L;
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     private Long id;
     @Column(nullable = false, columnDefinition = "DATE DEFAULT CURRENT_DATE")
     private Date ratingdate;
     @Column(nullable = false)
-    @Id
     private Date visitdate;
     @Column(nullable = false)
     private int rating;
@@ -41,7 +41,6 @@ public class RatingItem implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private MenuItem menuitem;
     @ManyToOne(fetch = FetchType.EAGER)
-    @Id
     private Rater rater;
     @Column(nullable = false)
     private int likes;
