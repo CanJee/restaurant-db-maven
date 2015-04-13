@@ -81,36 +81,65 @@ public class TestDataServlet extends HttpServlet {
             createRestaurants(owner);
             Location loc = addLocation(owner, restaurant1, "25 test drive", "Ottawa", "A0A 0A0", "ON" );
             addLocationRating(loc,rater);
+            addLocationRating(loc, "Great location! Great staff!", rater);
             
             Location loc2 = addLocation(owner, restaurant1, "23 test park", "Montreal", "A0A 0A1", "QC" );
+            addLocationRating(loc2, "not very clean :(", rater15);
+            addLocationRating(loc2, "unfriendly staff", rater14);
             Location loc3 = addLocation(owner, restaurant1, "3 principal", "Toronto", "A0A 0A2", "ON" );
-            
+            addLocationRating(loc3, "it was okay", rater13);
+            addLocationRating(loc3, "not bad", rater12);
             Location loc4 = addLocation(owner, restaurant2, "26 test drive", "Ottawa", "A0A 0A0", "ON" );
+            addLocationRating(loc4, "will come again", rater11);
+            addLocationRating(loc4, "yummy foood", rater10);
             Location loc5 = addLocation(owner, restaurant2, "24 test park", "Montreal", "A0A 0A1", "QC" );
+            addLocationRating(loc5, "great staff", rater9);
+            addLocationRating(loc5, "fast service", rater8);
             Location loc6 = addLocation(owner, restaurant2, "3 principal", "Toronto", "A0A 0A2", "ON" );
-            
+            addLocationRating(loc6, "price too high", rater7);
+            addLocationRating(loc6, "food was great", rater6);            
             Location loc7 = addLocation(owner, restaurant3, "27 test drive", "Ottawa", "A0A 0A0", "ON" );
+            addLocationRating(loc7, "enjoyed the food", rater5);
+            addLocationRating(loc7, "all round not bad", rater4);
             Location loc8 = addLocation(owner, restaurant3, "28 test park", "Montreal", "A0A 0A1", "QC" );
+            addLocationRating(loc8, "great prices for the food", rater3);
+            addLocationRating(loc8, "will come again enjoyed the food", rater2);
             Location loc9 = addLocation(owner, restaurant3, "4 principal", "Toronto", "A0A 0A2", "ON" );
-            
+            addLocationRating(loc9, "great mood and enviroment", rater);
+            addLocationRating(loc9, "too noisy", rater15);
             Location loc10 = addLocation(owner, restaurant4, "28 test drive", "Ottawa", "A0A 0A0", "ON" );
+            addLocationRating(loc10, "mood wasn't good", rater14);
+            addLocationRating(loc10, "enjoyed the meal", rater13);
             Location loc11 = addLocation(owner, restaurant4, "29 test park", "Montreal", "A0A 0A1", "QC" );
+            addLocationRating(loc11, "friendly and helpful staff", rater12);
+            addLocationRating(loc11, "great service", rater11);
             Location loc12 = addLocation(owner, restaurant4, "5 principal", "Toronto", "A0A 0A2", "ON" );
-            
+            addLocationRating(loc12, "place was messy", rater10);
+            addLocationRating(loc12, "too crowded", rater9);
             Location loc13 = addLocation(owner, restaurant5, "29 test drive", "Ottawa", "A0A 0A0", "ON" );
+            addLocationRating(loc13, "did not enjoy the food", rater8);
+            addLocationRating(loc13, "maybe will try something different next time", rater7);
             Location loc14 = addLocation(owner, restaurant5, "30 test park", "Montreal", "A0A 0A1", "QC" );
+            addLocationRating(loc14, "staff was not good", rater6);
+            addLocationRating(loc14, "unfriendly staff", rater5);
             Location loc15 = addLocation(owner, restaurant5, "6 principal", "Toronto", "A0A 0A2", "ON" );
-            
+            addLocationRating(loc15, "enjoyed the meal", rater4);
+            addLocationRating(loc15, "was better than I expected", rater3);
             Location loc16 = addLocation(owner, restaurant6, "30 test drive", "Ottawa", "A0A 0A0", "ON" );
+            addLocationRating(loc16, "did not like the environment", rater2);
+            addLocationRating(loc16, "food wasn't bad", rater);
             Location loc17 = addLocation(owner, restaurant7, "31 test park", "Montreal", "A0A 0A1", "QC" );
+            addLocationRating(loc17, "very reasonable prices", rater15);
             Location loc18 = addLocation(owner, restaurant8, "7 principal", "Toronto", "A0A 0A2", "ON" );
-            
+            addLocationRating(loc18, "will try a different location", rater14);
             Location loc19 = addLocation(owner, restaurant9, "31 test drive", "Ottawa", "A0A 0A0", "ON" );
+            addLocationRating(loc19, "needs renovation", rater13);
             Location loc20 = addLocation(owner, restaurant10, "32 test park", "Montreal", "A0A 0A1", "QC" );
+            addLocationRating(loc20, "needs more staff", rater12);
             Location loc21 = addLocation(owner, restaurant11, "8 principal", "Toronto", "A0A 0A2", "ON" );
-            
+            addLocationRating(loc21, "prices too high", rater11);
             Location loc22 = addLocation(owner, restaurant12, "9 principal", "Toronto", "A0A 0A2", "ON" );
-            
+            addLocationRating(loc22, "great food!", rater9);
             
             
             MenuItem item = addMenuItem(restaurant1,"main", "Cheese Burger", "food", "Cheese burger with lettuce and tomatoes"
@@ -433,6 +462,36 @@ public class TestDataServlet extends HttpServlet {
         menuItem.setRatings(menuItemRatings);
         rate.setItemratings(raterMenuItemRatings);
         em.merge(menuItem);
+        em.merge(rate);
+        em.merge(rating);
+    }
+    
+    private void addLocationRating (Location location, String comment, Rater rate) {
+        java.util.Calendar cal = Calendar.getInstance();
+        java.sql.Date sqlDate = new java.sql.Date(cal.getTime().getTime());
+        Random rand = new Random();
+        List<Rating> locationRatings = location.getRatings();
+        List<Rating> raterLocationRatings = rate.getRatings();
+        if (locationRatings == null)
+            locationRatings = new ArrayList<Rating>();
+        if (raterLocationRatings == null)
+            raterLocationRatings = new ArrayList<Rating>();
+        Rating rating = new Rating();
+        rating.setFoodrating(rand.nextInt(10)+1);
+        rating.setMoodrating(rand.nextInt(10)+1);
+        rating.setPricerating(rand.nextInt(10)+1);
+        rating.setStaffrating(rand.nextInt(10)+1);
+        rating.setComments(comment);
+        rating.setRater(rate);
+        rating.setLocation(location);
+        rating.setVisitdate(sqlDate);
+        rating.setRatingdate(sqlDate);
+        rating.setLikes(rand.nextInt(100)+1);
+        locationRatings.add(rating);
+        raterLocationRatings.add(rating);
+        location.setRatings(locationRatings);
+        rate.setRatings(raterLocationRatings);
+        em.merge(location);
         em.merge(rate);
         em.merge(rating);
     }
