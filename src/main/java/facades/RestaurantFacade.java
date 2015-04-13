@@ -79,18 +79,6 @@ public class RestaurantFacade extends BaseFacade {
             String queryString = "SELECT r.name, l.streetaddress, l.city, l.province FROM Restaurant r INNER JOIN Location l "
                     + "ON r = l.restaurant WHERE l.city = :city";
             
-            if (orderBy.equals("name")) {
-                queryString += "  ORDER BY r.name ";
-            } else if(orderBy.equals("address")){
-                queryString += "  ORDER BY l.streetaddress ";
-            }
-
-
-            if (ascending) {
-                queryString += "ASC";
-            } else {
-                queryString += "DESC";
-            }
 
             Query query = em.createQuery(queryString);
             query.setParameter("city", city);
